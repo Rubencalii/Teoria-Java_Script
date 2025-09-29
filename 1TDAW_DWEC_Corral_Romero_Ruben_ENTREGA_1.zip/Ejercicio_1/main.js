@@ -16,11 +16,11 @@ function pedirNumero() {
     let numero;
     do{
         // Numero entero 
-        numero = parseInt(prompt("Pon un numero entero positivo mayor que 0: "))
+        numero = parseInt(prompt("Pon un numero entero positivo: "))
 
         // Probar si es valido
         if (isNaN(numero) || numero <= 0){
-            alert("Tienes que meter un numero mayor que 0 y que sea entero");
+            alert("Tienes que ser un numero entero positivo");
         }
 
     } while(isNaN(numero) || numero <= 0);

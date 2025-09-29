@@ -16,7 +16,6 @@ Variantes:
     decir, no puede haber dos franjas juntas con el mismo color). 
 */
 
-// Array de colores
 let colores = ["red", "yellow", "green", "white", "blue", "brown", "pink", "black"];
 
 // Pedimos el numero de franjas 
@@ -24,7 +23,7 @@ let numFranjas;
 do {
     numFranjas = parseInt(prompt("Introduce el numero de franjas (entre 1 y 5): "));
     if (isNaN(numFranjas) || numFranjas < 1 || numFranjas > 5) {
-        alert("El numero introducido no es valido. Debe estar entre 1 y 5.");
+        alert("El numero introducido no es valido, debe ser entre 1 y 5.");
     }
 } while (isNaN(numFranjas) || numFranjas < 1 || numFranjas > 5);
 
@@ -51,11 +50,11 @@ function pedirNumero() {
     let numero;
     do{
         // Numero entero 
-        numero = parseInt(prompt("Pon un numero entero positivo mayor que 0: "))
+        numero = parseInt(prompt("Pon un numero entero positivo: "))
         
         // Probar si es valido
         if (isNaN(numero) || numero <= 0){
-            alert("Tienes que meter un numero mayor que 0 y que sea entero");
+            alert("Tienes que meter un numero que sea entero");
         }
 
     } while(isNaN(numero) || numero <= 0);
