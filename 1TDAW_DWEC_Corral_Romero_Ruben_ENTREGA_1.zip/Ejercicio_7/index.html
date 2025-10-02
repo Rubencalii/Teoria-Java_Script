@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 7 - Desplazamiento en Array</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔄 Ejercicio 7: Desplazamiento en Array</h1>
+            <p class="description">
+                Mueve un elemento desde una posición inicial a una final, desplazando el resto de elementos sin perder ninguno.
+            </p>
+        </header>
+        
+        <main>
+            <div class="instructions">
+                <h2>📝 Proceso del Ejercicio:</h2>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-icon">1️⃣</div>
+                        <div class="step-content">
+                            <h3>Introducir 10 números</h3>
+                            <p>El programa pedirá introducir 10 números por teclado que se almacenarán en un array</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-icon">2️⃣</div>
+                        <div class="step-content">
+                            <h3>Mostrar array inicial</h3>
+                            <p>Se mostrará el contenido del array junto con el índice de cada número</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-icon">3️⃣</div>
+                        <div class="step-content">
+                            <h3>Solicitar posiciones</h3>
+                            <p>Se pedirán dos posiciones: inicial y final (entre 0 y 9, inicial < final)</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-icon">4️⃣</div>
+                        <div class="step-content">
+                            <h3>Realizar desplazamiento</h3>
+                            <p>Se moverá el elemento de la posición inicial a la final, desplazando los demás</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="example">
+                <h2>💡 Ejemplo Visual del Desplazamiento:</h2>
+                <div class="visual-example">
+                    <div class="array-state">
+                        <h3>Array Inicial (inicial=3, final=7):</h3>
+                        <div class="array-visualization">
+                            <div class="array-row">
+                                <div class="array-label">Valor:</div>
+                                <div class="array-element">20</div>
+                                <div class="array-element">5</div>
+                                <div class="array-element">7</div>
+                                <div class="array-element highlight-initial">4</div>
+                                <div class="array-element">32</div>
+                                <div class="array-element">9</div>
+                                <div class="array-element">2</div>
+                                <div class="array-element highlight-final">14</div>
+                                <div class="array-element">11</div>
+                                <div class="array-element">6</div>
+                            </div>
+                            <div class="array-row">
+                                <div class="array-label">Índice:</div>
+                                <div class="array-index">0</div>
+                                <div class="array-index">1</div>
+                                <div class="array-index">2</div>
+                                <div class="array-index highlight-initial">3</div>
+                                <div class="array-index">4</div>
+                                <div class="array-index">5</div>
+                                <div class="array-index">6</div>
+                                <div class="array-index highlight-final">7</div>
+                                <div class="array-index">8</div>
+                                <div class="array-index">9</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="arrow-down">
+                        <span>⬇️</span>
+                        <p>Desplazamiento</p>
+                    </div>
+                    
+                    <div class="array-state">
+                        <h3>Array Final:</h3>
+                        <div class="array-visualization">
+                            <div class="array-row">
+                                <div class="array-label">Valor:</div>
+                                <div class="array-element">20</div>
+                                <div class="array-element">5</div>
+                                <div class="array-element">7</div>
+                                <div class="array-element">32</div>
+                                <div class="array-element">9</div>
+                                <div class="array-element">2</div>
+                                <div class="array-element">14</div>
+                                <div class="array-element highlight-moved">4</div>
+                                <div class="array-element">11</div>
+                                <div class="array-element">6</div>
+                            </div>
+                            <div class="array-row">
+                                <div class="array-label">Índice:</div>
+                                <div class="array-index">0</div>
+                                <div class="array-index">1</div>
+                                <div class="array-index">2</div>
+                                <div class="array-index">3</div>
+                                <div class="array-index">4</div>
+                                <div class="array-index">5</div>
+                                <div class="array-index">6</div>
+                                <div class="array-index highlight-moved">7</div>
+                                <div class="array-index">8</div>
+                                <div class="array-index">9</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="algorithm">
+                <h2>⚙️ Algoritmo de Desplazamiento:</h2>
+                <div class="algorithm-steps">
+                    <div class="algo-step">
+                        <div class="algo-number">1</div>
+                        <div class="algo-content">
+                            <h4>Guardar elemento a mover</h4>
+                            <code>let elementoAMover = numeros[inicial];</code>
+                        </div>
+                    </div>
+                    <div class="algo-step">
+                        <div class="algo-number">2</div>
+                        <div class="algo-content">
+                            <h4>Desplazar elementos hacia la izquierda</h4>
+                            <code>for (let i = inicial; i &lt; final; i++) {<br>&nbsp;&nbsp;numeros[i] = numeros[i + 1];<br>}</code>
+                        </div>
+                    </div>
+                    <div class="algo-step">
+                        <div class="algo-number">3</div>
+                        <div class="algo-content">
+                            <h4>Colocar elemento en posición final</h4>
+                            <code>numeros[final] = elementoAMover;</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="validation">
+                <h2>✅ Validaciones del Programa:</h2>
+                <div class="validation-grid">
+                    <div class="validation-item">
+                        <div class="validation-icon">🔢</div>
+                        <div class="validation-text">
+                            <h4>Rango válido</h4>
+                            <p>Las posiciones deben estar entre 0 y 9</p>
+                        </div>
+                    </div>
+                    <div class="validation-item">
+                        <div class="validation-icon">📊</div>
+                        <div class="validation-text">
+                            <h4>Orden correcto</h4>
+                            <p>La posición inicial debe ser menor que la final</p>
+                        </div>
+                    </div>
+                    <div class="validation-item">
+                        <div class="validation-icon">🔄</div>
+                        <div class="validation-text">
+                            <h4>Re-solicitud</h4>
+                            <p>Si los datos no son válidos, se vuelven a pedir</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="results">
+                <h2>📋 Resultados:</h2>
+                <div class="console-info">
+                    <p>🖥️ Abre la consola del navegador (F12) para ver:</p>
+                    <ul>
+                        <li>El proceso de introducción de los 10 números</li>
+                        <li>El array inicial con valores e índices</li>
+                        <li>La solicitud de posiciones inicial y final</li>
+                        <li>El array resultante después del desplazamiento</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>💡 El algoritmo preserva todos los elementos, solo cambia su posición en el array</p>
+        </footer>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio Extra - Juego de la Vida de Conway</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧬 Ejercicio Extra: Juego de la Vida de Conway</h1>
+            <p class="description">
+                Simulación del famoso autómata celular usando únicamente arrays, bucles y condicionales.
+            </p>
+        </header>
+        
+        <main>
+            <div class="game-info">
+                <h2>🎮 ¿Qué es el Juego de la Vida?</h2>
+                <div class="info-content">
+                    <p>
+                        El Juego de la Vida de Conway es un autómata celular creado por John Horton Conway en 1970. 
+                        Consiste en una rejilla bidimensional de células que pueden estar vivas (■) o muertas (□). 
+                        El estado de cada célula evoluciona en cada generación según reglas simples.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="rules-section">
+                <h2>📋 Reglas del Juego de la Vida:</h2>
+                <div class="rules-grid">
+                    <div class="rule-card death">
+                        <div class="rule-icon">💀</div>
+                        <div class="rule-content">
+                            <h3>Muerte por Soledad</h3>
+                            <p>Una célula viva con menos de 2 vecinos vivos muere</p>
+                            <div class="example">
+                                <span class="cell dead">□</span>
+                                <span class="cell alive">■</span>
+                                <span class="cell dead">□</span>
+                                <div class="arrow">→</div>
+                                <span class="cell dead">□</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="rule-card survival">
+                        <div class="rule-icon">❤️</div>
+                        <div class="rule-content">
+                            <h3>Supervivencia</h3>
+                            <p>Una célula viva con 2 o 3 vecinos vivos sobrevive</p>
+                            <div class="example">
+                                <span class="cell alive">■</span>
+                                <span class="cell alive">■</span>
+                                <span class="cell alive">■</span>
+                                <div class="arrow">→</div>
+                                <span class="cell alive">■</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="rule-card overpopulation">
+                        <div class="rule-icon">💥</div>
+                        <div class="rule-content">
+                            <h3>Muerte por Sobrepoblación</h3>
+                            <p>Una célula viva con más de 3 vecinos vivos muere</p>
+                            <div class="example">
+                                <span class="cell alive">■</span>
+                                <span class="cell alive">■</span>
+                                <span class="cell alive">■</span>
+                                <span class="cell alive">■</span>
+                                <div class="arrow">→</div>
+                                <span class="cell dead">□</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="rule-card birth">
+                        <div class="rule-icon">✨</div>
+                        <div class="rule-content">
+                            <h3>Nacimiento</h3>
+                            <p>Una célula muerta con exactamente 3 vecinos vivos nace</p>
+                            <div class="example">
+                                <span class="cell alive">■</span>
+                                <span class="cell dead">□</span>
+                                <span class="cell alive">■</span>
+                                <span class="cell alive">■</span>
+                                <div class="arrow">→</div>
+                                <span class="cell alive">■</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="patterns-section">
+                <h2>🔄 Patrones Implementados:</h2>
+                <div class="patterns-showcase">
+                    <div class="pattern-card">
+                        <h3>🛸 Glider (Planeador)</h3>
+                        <div class="pattern-description">
+                            <p>Un patrón que se mueve diagonalmente a través de la rejilla</p>
+                        </div>
+                        <div class="pattern-visual">
+                            <div class="mini-grid">
+                                <div class="mini-row">
+                                    <span class="mini-cell dead">□</span>
+                                    <span class="mini-cell alive">■</span>
+                                    <span class="mini-cell dead">□</span>
+                                </div>
+                                <div class="mini-row">
+                                    <span class="mini-cell dead">□</span>
+                                    <span class="mini-cell dead">□</span>
+                                    <span class="mini-cell alive">■</span>
+                                </div>
+                                <div class="mini-row">
+                                    <span class="mini-cell alive">■</span>
+                                    <span class="mini-cell alive">■</span>
+                                    <span class="mini-cell alive">■</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="pattern-card">
+                        <h3>⚡ Blinker (Parpadeador)</h3>
+                        <div class="pattern-description">
+                            <p>Un patrón oscilante que alterna entre horizontal y vertical</p>
+                        </div>
+                        <div class="pattern-visual">
+                            <div class="mini-grid">
+                                <div class="mini-row">
+                                    <span class="mini-cell dead">□</span>
+                                    <span class="mini-cell alive">■</span>
+                                    <span class="mini-cell dead">□</span>
+                                </div>
+                                <div class="mini-row">
+                                    <span class="mini-cell dead">□</span>
+                                    <span class="mini-cell alive">■</span>
+                                    <span class="mini-cell dead">□</span>
+                                </div>
+                                <div class="mini-row">
+                                    <span class="mini-cell dead">□</span>
+                                    <span class="mini-cell alive">■</span>
+                                    <span class="mini-cell dead">□</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="implementation">
+                <h2>⚙️ Implementación del Algoritmo:</h2>
+                <div class="implementation-steps">
+                    <div class="impl-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>🏗️ Crear rejilla</h4>
+                            <p>Se inicializa una matriz 2D con valores 0 (muerta) y 1 (viva)</p>
+                            <code>rejilla[i][j] = 0; // Célula muerta</code>
+                        </div>
+                    </div>
+                    
+                    <div class="impl-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>🔍 Contar vecinos</h4>
+                            <p>Para cada célula, se cuentan los 8 vecinos adyacentes</p>
+                            <code>for (let i = -1; i <= 1; i++) { /* revisar vecinos */ }</code>
+                        </div>
+                    </div>
+                    
+                    <div class="impl-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>🧮 Aplicar reglas</h4>
+                            <p>Se determinan los estados de la siguiente generación</p>
+                            <code>if (vecinos === 3) nuevaRejilla[i][j] = 1;</code>
+                        </div>
+                    </div>
+                    
+                    <div class="impl-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>🔄 Actualizar estado</h4>
+                            <p>Se reemplaza la rejilla actual con la nueva generación</p>
+                            <code>rejilla = siguienteGeneracion(rejilla);</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="simulation-info">
+                <h2>🎯 Detalles de la Simulación:</h2>
+                <div class="simulation-details">
+                    <div class="detail-item">
+                        <div class="detail-icon">📐</div>
+                        <div class="detail-content">
+                            <h4>Tamaño de rejilla</h4>
+                            <p>8x8 células para visualización óptima</p>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-icon">🔢</div>
+                        <div class="detail-content">
+                            <h4>Generaciones</h4>
+                            <p>5 generaciones para el Glider, 3 para el Blinker</p>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-icon">👁️</div>
+                        <div class="detail-content">
+                            <h4>Visualización</h4>
+                            <p>■ para células vivas, □ para células muertas</p>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-icon">🔬</div>
+                        <div class="detail-content">
+                            <h4>Tecnología</h4>
+                            <p>Solo arrays, bucles y condicionales básicos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="results">
+                <h2>📋 Simulación en Ejecución:</h2>
+                <div class="console-info">
+                    <p>🖥️ Abre la consola del navegador (F12) para ver:</p>
+                    <ul>
+                        <li>La simulación completa del patrón Glider durante 5 generaciones</li>
+                        <li>El estado inicial y la evolución paso a paso</li>
+                        <li>La demostración del patrón Blinker oscilante</li>
+                        <li>La representación visual con ■ y □ en cada generación</li>
+                        <li>El mensaje de finalización de la simulación</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>🧬 El Juego de la Vida demuestra cómo reglas simples pueden crear comportamientos complejos</p>
+        </footer>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

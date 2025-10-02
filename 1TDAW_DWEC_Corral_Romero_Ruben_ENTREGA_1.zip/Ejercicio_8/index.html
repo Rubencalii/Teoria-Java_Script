@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 8 - Gestión de Mesas de Restaurante</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🍽️ Ejercicio 8: Gestión de Mesas de Restaurante</h1>
+            <p class="description">
+                Sistema para colocar clientes en mesas de restaurante con capacidad máxima de 4 comensales por mesa.
+            </p>
+        </header>
+        
+        <main>
+            <div class="restaurant-info">
+                <h2>🏪 Información del Restaurante:</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-icon">🪑</div>
+                        <div class="info-content">
+                            <h3>Capacidad por mesa</h3>
+                            <p>De 0 a 4 comensales</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">🎲</div>
+                        <div class="info-content">
+                            <h3>Estado inicial</h3>
+                            <p>Valores aleatorios (0-4)</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">👥</div>
+                        <div class="info-content">
+                            <h3>Grupos máximos</h3>
+                            <p>Hasta 4 personas por grupo</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">🚫</div>
+                        <div class="info-content">
+                            <h3>No se pueden separar</h3>
+                            <p>Los grupos deben ir juntos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="algorithm-flow">
+                <h2>🔄 Algoritmo de Asignación de Mesas:</h2>
+                <div class="flow-steps">
+                    <div class="flow-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>🚪 Llegada de clientes</h3>
+                            <p>Se pregunta cuántos comensales son</p>
+                        </div>
+                    </div>
+                    <div class="flow-arrow">⬇️</div>
+                    <div class="flow-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>✅ Validación del grupo</h3>
+                            <p>Si > 4 personas: mensaje de error y repetir</p>
+                        </div>
+                    </div>
+                    <div class="flow-arrow">⬇️</div>
+                    <div class="flow-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>🔍 Buscar mesa libre</h3>
+                            <p>Prioridad: mesas vacías (0 personas)</p>
+                        </div>
+                    </div>
+                    <div class="flow-arrow">⬇️</div>
+                    <div class="flow-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>🪑 Buscar mesa con espacio</h3>
+                            <p>Si no hay vacías: mesa con espacio suficiente</p>
+                        </div>
+                    </div>
+                    <div class="flow-arrow">⬇️</div>
+                    <div class="flow-step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h3>✨ Asignar o rechazar</h3>
+                            <p>Asignar mesa o mostrar "no hay sitio"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="example-execution">
+                <h2>📋 Ejemplo de Ejecución:</h2>
+                <div class="execution-log">
+                    <div class="log-header">
+                        <span class="restaurant-name">🏪 Restaurante - 10 mesas</span>
+                    </div>
+                    
+                    <div class="log-entry initial">
+                        <div class="log-label">Estado inicial:</div>
+                        <div class="mesa-state">
+                            <span class="mesa">3</span>
+                            <span class="mesa">2</span>
+                            <span class="mesa empty">0</span>
+                            <span class="mesa">2</span>
+                            <span class="mesa full">4</span>
+                            <span class="mesa">1</span>
+                            <span class="mesa empty">0</span>
+                            <span class="mesa">2</span>
+                            <span class="mesa">1</span>
+                            <span class="mesa">1</span>
+                        </div>
+                    </div>
+                    
+                    <div class="log-entry request">
+                        <div class="log-label">Cliente pide:</div>
+                        <div class="log-text">Mesa para 2 personas</div>
+                    </div>
+                    
+                    <div class="log-entry response">
+                        <div class="log-label">Respuesta:</div>
+                        <div class="log-text success">Por favor, siéntese en la mesa 3</div>
+                    </div>
+                    
+                    <div class="log-entry result">
+                        <div class="log-label">Estado actual:</div>
+                        <div class="mesa-state">
+                            <span class="mesa">3</span>
+                            <span class="mesa">2</span>
+                            <span class="mesa assigned">2</span>
+                            <span class="mesa">2</span>
+                            <span class="mesa full">4</span>
+                            <span class="mesa">1</span>
+                            <span class="mesa empty">0</span>
+                            <span class="mesa">2</span>
+                            <span class="mesa">1</span>
+                            <span class="mesa">1</span>
+                        </div>
+                    </div>
+                    
+                    <div class="log-divider"></div>
+                    
+                    <div class="log-entry request">
+                        <div class="log-label">Cliente pide:</div>
+                        <div class="log-text">Mesa para 4 personas</div>
+                    </div>
+                    
+                    <div class="log-entry response">
+                        <div class="log-label">Respuesta:</div>
+                        <div class="log-text success">Por favor, siéntese en la mesa 7</div>
+                    </div>
+                    
+                    <div class="log-entry error-example">
+                        <div class="log-label">Cliente pide:</div>
+                        <div class="log-text">Mesa para 6 personas</div>
+                    </div>
+                    
+                    <div class="log-entry response">
+                        <div class="log-label">Respuesta:</div>
+                        <div class="log-text error">Lo siento, no admitimos grupos de 6, haga grupos de 4 personas como máximo</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="features">
+                <h2>🌟 Características del Sistema:</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h4>Priorización inteligente</h4>
+                        <p>Busca primero mesas vacías, luego mesas con espacio disponible</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔢</div>
+                        <h4>Validación de entrada</h4>
+                        <p>Controla que los grupos no excedan las 4 personas</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h4>Estado en tiempo real</h4>
+                        <p>Muestra el estado de todas las mesas después de cada asignación</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🚪</div>
+                        <h4>Finalización controlada</h4>
+                        <p>Termina el programa cuando se introduce un número negativo</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="results">
+                <h2>📋 Ejecución del Programa:</h2>
+                <div class="console-info">
+                    <p>🖥️ Abre la consola del navegador (F12) para ver:</p>
+                    <ul>
+                        <li>La solicitud del número de mesas del restaurante</li>
+                        <li>El estado inicial aleatorio de las mesas</li>
+                        <li>Las interacciones con los clientes</li>
+                        <li>Las asignaciones de mesas en tiempo real</li>
+                        <li>Los mensajes de error para grupos muy grandes</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>🎲 El estado inicial de las mesas se genera aleatoriamente en cada ejecución</p>
+        </footer>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

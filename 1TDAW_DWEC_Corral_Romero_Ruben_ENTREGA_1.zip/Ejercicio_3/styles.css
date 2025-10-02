@@ -1,0 +1,230 @@
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #2d3436 0%, #636e72 50%, #74b9ff 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+    max-width: 1000px;
+    margin: 20px;
+    backdrop-filter: blur(15px);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 3px solid #74b9ff;
+}
+
+h1 {
+    color: #2d3436;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.description {
+    font-size: 1.2rem;
+    color: #666;
+    font-style: italic;
+}
+
+main {
+    display: grid;
+    gap: 2rem;
+}
+
+.instructions, .results {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 15px;
+    border-left: 5px solid #74b9ff;
+}
+
+h2 {
+    color: #2d3436;
+    margin-bottom: 1.5rem;
+    font-size: 1.6rem;
+}
+
+/* Estilos para la distribución del presupuesto */
+.budget-breakdown {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.budget-item {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border-left: 6px solid;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.budget-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.materials {
+    border-left-color: #e17055;
+}
+
+.labor {
+    border-left-color: #74b9ff;
+}
+
+.licenses {
+    border-left-color: #00b894;
+}
+
+.percentage {
+    font-size: 3rem;
+    font-weight: bold;
+    min-width: 120px;
+    text-align: center;
+    margin-right: 1.5rem;
+}
+
+.materials .percentage {
+    color: #e17055;
+}
+
+.labor .percentage {
+    color: #74b9ff;
+}
+
+.licenses .percentage {
+    color: #00b894;
+}
+
+.concept h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: #2d3436;
+}
+
+.concept p {
+    color: #666;
+    font-size: 1rem;
+}
+
+ol {
+    padding-left: 1.5rem;
+}
+
+li {
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+}
+
+.results {
+    background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+}
+
+#result-content p {
+    font-size: 1.2rem;
+    color: #555;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 500;
+}
+
+footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #ddd;
+    color: #666;
+    font-style: italic;
+    font-size: 1.1rem;
+}
+
+/* Animaciones */
+.container {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.budget-item {
+    animation: slideInLeft 0.6s ease-out forwards;
+    opacity: 0;
+}
+
+.budget-item:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.budget-item:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.budget-item:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        margin: 10px;
+        padding: 1.5rem;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .budget-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .percentage {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+}

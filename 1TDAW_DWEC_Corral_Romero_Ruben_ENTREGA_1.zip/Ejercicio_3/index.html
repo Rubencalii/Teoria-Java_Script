@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3 - Presupuesto de Obra</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏗️ Ejercicio 3: Presupuesto de Obra</h1>
+            <p class="description">
+                Distribuye el presupuesto de una obra en diferentes conceptos según porcentajes establecidos.
+            </p>
+        </header>
+        
+        <main>
+            <div class="instructions">
+                <h2>📊 Distribución del Presupuesto:</h2>
+                <div class="budget-breakdown">
+                    <div class="budget-item materials">
+                        <div class="percentage">50%</div>
+                        <div class="concept">
+                            <h3>🧱 Materiales</h3>
+                            <p>Incluye todos los materiales de construcción necesarios</p>
+                        </div>
+                    </div>
+                    <div class="budget-item labor">
+                        <div class="percentage">20%</div>
+                        <div class="concept">
+                            <h3>👷‍♂️ Mano de Obra</h3>
+                            <p>Costos del personal de construcción</p>
+                        </div>
+                    </div>
+                    <div class="budget-item licenses">
+                        <div class="percentage">30%</div>
+                        <div class="concept">
+                            <h3>📋 Licencias de Obra</h3>
+                            <p>Permisos y documentación legal requerida</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="instructions">
+                <h2>📝 Instrucciones:</h2>
+                <ol>
+                    <li>Introduce el presupuesto total de la obra</li>
+                    <li>El programa calculará automáticamente cada concepto</li>
+                    <li>Los resultados se mostrarán en una lista ordenada</li>
+                    <li>Si introduces valor negativo, verás un mensaje de error</li>
+                </ol>
+            </div>
+            
+            <div class="results">
+                <h2>💰 Resultado:</h2>
+                <div id="result-content">
+                    <p>Los costes de cada concepto se mostrarán aquí después de ejecutar el programa.</p>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>💡 Los porcentajes están predefinidos: 50% materiales, 20% mano de obra, 30% licencias</p>
+        </footer>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

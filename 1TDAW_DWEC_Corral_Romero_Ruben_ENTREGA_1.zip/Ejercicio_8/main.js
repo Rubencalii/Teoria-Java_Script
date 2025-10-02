@@ -56,7 +56,7 @@ let inicializarMesas = function(numeroMesas) {
 };
 
 // Función para mostrar el estado actual de las mesas
-// Función para mostrar el estado actual de las mesas
+
 let mostrarEstadoMesas = function(mesas) {
     console.log("Estado de las mesas: " + mesas.join(" "));
 };
