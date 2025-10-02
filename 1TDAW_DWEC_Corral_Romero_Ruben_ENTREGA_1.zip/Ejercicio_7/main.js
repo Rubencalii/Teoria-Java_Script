@@ -32,13 +32,13 @@ console.log("Índice: 0  1  2  3  4  5  6  7  8  9");
 
 let inicial, final;
 do {
-    inicial = parseInt(prompt("Introduce la posición inicial (0-9):"));
-    final = parseInt(prompt("Introduce la posición final (0-9):"));
+    inicial = parseInt(prompt("Introduce la posición inicial entre 0 y 9:"));
+    final = parseInt(prompt("Introduce la posición final entre 0 y 9:"));
     
     if (inicial < 0 || inicial > 9 || final < 0 || final > 9) {
-        alert("Las posiciones deben estar entre 0 y 9. Inténtalo de nuevo.");
+        alert("Las posiciones deben estar entre 0 y 9.");
     } else if (inicial >= final) {
-        alert("La posición inicial debe ser menor que la final. Inténtalo de nuevo.");
+        alert("La posición inicial debe ser menor que la final.");
     }
 } while (inicial < 0 || inicial > 9 || final < 0 || final > 9 || inicial >= final);
 

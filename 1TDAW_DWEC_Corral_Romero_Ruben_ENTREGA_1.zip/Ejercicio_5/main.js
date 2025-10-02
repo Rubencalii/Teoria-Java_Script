@@ -10,7 +10,7 @@ Ejemplo:
 */
 
 // Array de colores
-let colores = ["red", "yellow", "green", "white", "blue", "brown", "pink", "black"];
+let colores = ["rojo", "amarillo", "verde", "blanco", "azul", "marrón", "rosa", "negro"];
 
 // Array para las palabras del usuario
 let palabrasUsuario = [];
