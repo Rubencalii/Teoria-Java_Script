@@ -37,31 +37,32 @@ Ejemplo de ejecución:
 */
 
 // Pedir numero entero positivo
-function pedirNumero() {
+let pedirNumero = function() {
     let numero;
     do{
         numero = parseInt(prompt("Pon un numero entero mayor a 0: "))
     } while(isNaN(numero) || numero <= 0);
     
     return numero;
-}
+};
 
 // Función para inicializar las mesas con valores aleatorios entre 0 y 4
-function inicializarMesas(numeroMesas) {
+let inicializarMesas = function(numeroMesas) {
     let mesas = [];
     for (let i = 0; i < numeroMesas; i++) {
         mesas[i] = Math.floor(Math.random() * 5);
     }
     return mesas;
-}
+};
 
 // Función para mostrar el estado actual de las mesas
-function mostrarEstadoMesas(mesas) {
+// Función para mostrar el estado actual de las mesas
+let mostrarEstadoMesas = function(mesas) {
     console.log("Estado de las mesas: " + mesas.join(" "));
-}
+};
 
 // Función para buscar una mesa disponible para un grupo
-function buscarMesaDisponible(mesas, comensales) {
+let buscarMesaDisponible = function(mesas, comensales) {
 
     for (let i = 0; i < mesas.length; i++) {
         if (mesas[i] === 0) {
@@ -76,10 +77,10 @@ function buscarMesaDisponible(mesas, comensales) {
     }
     
     return -1;
-}
+};
 
 // Función para pedir número de comensales
-function pedirComensales() {
+let pedirComensales = function() {
     let comensales;
     do {
         comensales = parseInt(prompt("Pra cuantos son?"));
@@ -100,10 +101,10 @@ function pedirComensales() {
         return comensales;
         
     } while (true);
-}
+};
 
 // Función principal del programa
-function gestionarRestaurante() {
+let gestionarRestaurante = function() {
 
     let numeroMesas = pedirNumero();
     
@@ -130,6 +131,6 @@ function gestionarRestaurante() {
         
         mostrarEstadoMesas(mesas);
     }
-}
+};
 
 gestionarRestaurante();

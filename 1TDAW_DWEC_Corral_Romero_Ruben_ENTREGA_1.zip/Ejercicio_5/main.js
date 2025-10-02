@@ -22,7 +22,7 @@ for (let i = 0; i < 8; i++) {
 }
 
 // Función para ordenar las palabras
-function ordenarPalabras(palabras, colores) {
+let ordenarPalabras = function(palabras, colores) {
     return palabras.sort((a, b) => {
         let aEsColor = colores.includes(a.toLowerCase());
         let bEsColor = colores.includes(b.toLowerCase());
@@ -31,7 +31,7 @@ function ordenarPalabras(palabras, colores) {
         if (!aEsColor && bEsColor) return 1;
         return 0;
     });
-}
+};
 
 // Ordenamos las palabras del usuario
 let palabrasOrdenadas = ordenarPalabras(palabrasUsuario, colores);
@@ -40,7 +40,7 @@ let palabrasOrdenadas = ordenarPalabras(palabrasUsuario, colores);
 console.log("Array resultante: " + palabrasOrdenadas.join(" "));
 
 // Pedir numero entero positivo
-function pedirNumero() {
+let pedirNumero = function() {
     let numero;
     do{
         // Numero entero 
@@ -54,4 +54,4 @@ function pedirNumero() {
     } while(isNaN(numero) || numero <= 0);
 
     return numero;
-}   
+};   

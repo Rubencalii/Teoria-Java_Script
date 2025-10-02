@@ -12,7 +12,7 @@ dice que un número es un cuadrado si es el resultado de la multiplicación
 de un número por sí mismo */
 // Numero entero positivo
 
-function pedirNumero() {
+let pedirNumero = function() {
     let numero;
     do{
         // Numero entero 
@@ -26,11 +26,11 @@ function pedirNumero() {
     } while(isNaN(numero) || numero <= 0);
 
     return numero;
-}
+};
 
 
 // Divisores de un numero
-function divisores(n){
+let divisores = function(n){
     let divisores = [];
 
     // Probamos todos los numeros 
@@ -40,10 +40,10 @@ function divisores(n){
         }
     }
     return divisores;
-}
+};
 
 // Funcion para sumar cuadrados
-function sumarCuadrados(divisores){
+let sumarCuadrados = function(divisores){
     let suma = 0;
     
     // Suma cada divisor al cuadrado
@@ -51,13 +51,13 @@ function sumarCuadrados(divisores){
         suma += divisores[i] * divisores[i];
     }
     return suma;
-}
+};
 
 // Funcion para ver si es cuadrado perfecto
-function esCuadrado(numero){
+let esCuadrado = function(numero){
     let raiz = Math.sqrt(numero);
     return raiz === Math.floor(raiz);
-}
+};
 
 // Pedimos el numero
 let N = pedirNumero();

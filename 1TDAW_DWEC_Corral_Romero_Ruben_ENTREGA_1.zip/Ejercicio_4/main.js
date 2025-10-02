@@ -46,7 +46,7 @@ document.write("</tr></table>");
 
 
 // Pedir numero entero positivo
-function pedirNumero() {
+let pedirNumero = function() {
     let numero;
     do{
         // Numero entero 
@@ -60,4 +60,4 @@ function pedirNumero() {
     } while(isNaN(numero) || numero <= 0);
 
     return numero;
-}
+};

@@ -10,7 +10,7 @@ Ejemplos:
     d. [1, 2, 3, 3] y [3, 2, 1, 4, 5, 4]) ==> [4,5]
 */
 
-function obtenerElementosUnicos(arr1, arr2) {
+let obtenerElementosUnicos = function(arr1, arr2) {
     // Concatenamos los dos arrays
     let concatenado = arr1.concat(arr2);
 
@@ -20,7 +20,7 @@ function obtenerElementosUnicos(arr1, arr2) {
     });
 
     return unicos;
-}
+};
 
 // Ejemplos de uso
 console.log(obtenerElementosUnicos([1, 2, 3, 3], [3, 2, 1, 4, 5])); 
