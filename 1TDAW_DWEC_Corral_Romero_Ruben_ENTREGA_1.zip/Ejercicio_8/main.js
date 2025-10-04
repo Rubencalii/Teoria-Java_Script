@@ -36,7 +36,6 @@ Ejemplo de ejecución:
 
 */
 
-// Pedir numero entero positivo
 let pedirNumero = function() {
     let numero;
     do{
@@ -46,7 +45,6 @@ let pedirNumero = function() {
     return numero;
 };
 
-// Función para inicializar las mesas con valores aleatorios entre 0 y 4
 let inicializarMesas = function(numeroMesas) {
     let mesas = [];
     for (let i = 0; i < numeroMesas; i++) {
@@ -55,13 +53,10 @@ let inicializarMesas = function(numeroMesas) {
     return mesas;
 };
 
-// Función para mostrar el estado actual de las mesas
-
 let mostrarEstadoMesas = function(mesas) {
     console.log("Estado de las mesas: " + mesas.join(" "));
 };
 
-// Función para buscar una mesa disponible para un grupo
 let buscarMesaDisponible = function(mesas, comensales) {
 
     for (let i = 0; i < mesas.length; i++) {
@@ -79,7 +74,6 @@ let buscarMesaDisponible = function(mesas, comensales) {
     return -1;
 };
 
-// Función para pedir número de comensales
 let pedirComensales = function() {
     let comensales;
     do {
@@ -103,7 +97,6 @@ let pedirComensales = function() {
     } while (true);
 };
 
-// Función principal del programa
 let gestionarRestaurante = function() {
 
     let numeroMesas = pedirNumero();

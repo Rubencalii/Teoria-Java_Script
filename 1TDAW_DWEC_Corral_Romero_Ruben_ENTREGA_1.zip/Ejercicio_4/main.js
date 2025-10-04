@@ -18,7 +18,6 @@ Variantes:
 
 let colores = ["red", "yellow", "green", "white", "blue", "brown", "pink", "black"];
 
-// Pedimos el numero de franjas 
 let numFranjas;
 do {
     numFranjas = parseInt(prompt("Introduce el numero de franjas (entre 1 y 5): "));
@@ -27,7 +26,6 @@ do {
     }
 } while (isNaN(numFranjas) || numFranjas < 1 || numFranjas > 5);
 
-// Generamos los colores de la bandera
 let bandera = [];
 for (let i = 0; i < numFranjas; i++) {
     let color;
@@ -37,22 +35,17 @@ for (let i = 0; i < numFranjas; i++) {
     bandera.push(color);
 }
 
-// Mostramos la bandera
 document.write("<table style='width:100%; height:200px; border-collapse: collapse;'><tr>");
 for (let i = 0; i < bandera.length; i++) {
     document.write("<td style='background-color:" + bandera[i] + "; width:" + (100 / numFranjas) + "%;'></td>");
 }
 document.write("</tr></table>");
 
-
-// Pedir numero entero positivo
 let pedirNumero = function() {
     let numero;
     do{
-        // Numero entero 
         numero = parseInt(prompt("Pon un numero entero positivo: "))
         
-        // Probar si es valido
         if (isNaN(numero) || numero <= 0){
             alert("Tienes que meter un numero que sea entero");
         }

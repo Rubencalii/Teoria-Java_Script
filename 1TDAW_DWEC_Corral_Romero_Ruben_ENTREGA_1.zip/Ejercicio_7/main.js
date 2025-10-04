@@ -19,7 +19,6 @@ Por ejemplo, para inicial = 3 y final = 7:*
 */
 let numeros = [];
 
-// Introduce 10 numeros 
 for (let i = 0; i < 10; i++) {
     let numero = parseInt(prompt("Introduce el numero " + (i + 1) + ": "));
     numeros.push(numero);

@@ -9,19 +9,15 @@ Ejemplo:
 
 */
 
-// Array de colores
 let colores = ["rojo", "amarillo", "verde", "blanco", "azul", "marrón", "rosa", "negro"];
 
-// Array para las palabras del usuario
 let palabrasUsuario = [];
 
-// Pedimos 8 palabras al usuario
 for (let i = 0; i < 8; i++) {
     let palabra = prompt("Introduce una palabra (" + (i + 1) + " de 8):");
     palabrasUsuario.push(palabra);
 }
 
-// Función para ordenar las palabras
 let ordenarPalabras = function(palabras, colores) {
     return palabras.sort((a, b) => {
         let aEsColor = colores.includes(a.toLowerCase());
@@ -33,20 +29,15 @@ let ordenarPalabras = function(palabras, colores) {
     });
 };
 
-// Ordenamos las palabras del usuario
 let palabrasOrdenadas = ordenarPalabras(palabrasUsuario, colores);
 
-// Mostramos el array resultante por consola
 console.log("Array resultante: " + palabrasOrdenadas.join(" "));
 
-// Pedir numero entero positivo
 let pedirNumero = function() {
     let numero;
     do{
-        // Numero entero 
         numero = parseInt(prompt("Pon un numero entero positivo mayor que 0: "))
 
-        // Probar si es valido
         if (isNaN(numero) || numero <= 0){
             alert("Tienes que meter un numero mayor que 0 y que sea entero");
         }
@@ -54,4 +45,4 @@ let pedirNumero = function() {
     } while(isNaN(numero) || numero <= 0);
 
     return numero;
-};   
+};

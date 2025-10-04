@@ -11,10 +11,8 @@ Ejemplos:
 */
 
 let obtenerElementosUnicos = function(arr1, arr2) {
-    // Concatenamos los dos arrays
     let concatenado = arr1.concat(arr2);
 
-    // Filtramos los elementos que solo aparecen una vez
     let unicos = concatenado.filter(item => {
         return concatenado.indexOf(item) === concatenado.lastIndexOf(item);
     });
@@ -22,8 +20,7 @@ let obtenerElementosUnicos = function(arr1, arr2) {
     return unicos;
 };
 
-// Ejemplos de uso
 console.log(obtenerElementosUnicos([1, 2, 3, 3], [3, 2, 1, 4, 5])); 
 console.log(obtenerElementosUnicos(["Ray", "Jose", "Dani"], ["Dani", "Jose", "Ivan"])); 
 console.log(obtenerElementosUnicos([77, "ciao"], [78, 42, "ciao"])); 
-console.log(obtenerElementosUnicos([1, 2, 3, 3], [3, 2, 1, 4, 5, 4])); 
+console.log(obtenerElementosUnicos([1, 2, 3, 3], [3, 2, 1, 4, 5, 4]));
