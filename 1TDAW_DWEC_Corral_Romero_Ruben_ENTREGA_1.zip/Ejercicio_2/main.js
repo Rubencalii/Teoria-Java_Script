@@ -32,3 +32,11 @@ if (isNaN(kmDia) || kmDia < 0){
 
     document.writeln("La categoria del runner es: " + categoria);
 }
+
+    /*
+    Ejercicio 2 - Clasificación de corredores
+    Este script pide al usuario los kilómetros que corre al día y calcula la categoría del corredor según los kilómetros semanales.
+    Las categorías son: Novato, Iniciado, Experto y Élite.
+    Si el usuario introduce un número negativo, se muestra un mensaje de error.
+    Sirve para practicar condicionales, validación de datos y salida por pantalla.
+    */

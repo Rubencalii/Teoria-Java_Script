@@ -1,23 +1,15 @@
-/*Define un array con los siguientes colores: red, yellow, green, white, blue, brown,
-pink y black. A continuación, crea un generador aleatorio de banderas:
-
-    • Se pide el número de franjas que va a tener la bandera (entre 1 y 5). Se
-    debe comprobar que el número introducido cumple las características pedidas.
-    • El programa obtiene de forma aleatoria 5 colores del array. Para obtener un
-    valor aleatorio se puede utilizar la función de Math random, junto con la función floor. Se utilizan de la siguiente manera:
-    nombreArray[Math.floor(Math.random() * nombreArray.length)]
-    • Usando document.write, crea una tabla de una fila y tantas columnas como colores tenga la bandera generada. Usa el atributo style para rellenar el fondo de
-    cada celda del color adecuado.
-
-Variantes:
-    a. En el paso 2 se pueden repetir colores en la bandera.
-    b. En el paso 2 NO se pueden repetir colores en la bandera.
-    c. En el paso 2 se pueden repetir colores mientras no sean consecutivos (es
-    decir, no puede haber dos franjas juntas con el mismo color). 
+/*
+Ejercicio 4 - Generador de banderas aleatorias
+Este script pide al usuario el número de franjas de una bandera (entre 1 y 5) y genera una bandera con colores aleatorios.
+No permite que dos franjas consecutivas tengan el mismo color.
+La bandera se muestra como una tabla en la web, cada celda representa una franja de color.
+Sirve para practicar arrays, bucles, generación aleatoria y manipulación del DOM.
 */
 
+// Array con los colores disponibles para las franjas de la bandera
 let colores = ["red", "yellow", "green", "white", "blue", "brown", "pink", "black"];
 
+// Pedimos al usuario el número de franjas y validamos que esté entre 1 y 5
 let numFranjas;
 do {
     numFranjas = parseInt(prompt("Introduce el numero de franjas (entre 1 y 5): "));
@@ -26,17 +18,21 @@ do {
     }
 } while (isNaN(numFranjas) || numFranjas < 1 || numFranjas > 5);
 
+// Generamos la bandera con colores aleatorios, evitando colores consecutivos repetidos
 let bandera = [];
 for (let i = 0; i < numFranjas; i++) {
     let color;
     do {
         color = colores[Math.floor(Math.random() * colores.length)];
-    } while (i > 0 && color === bandera[i - 1]); 
+    } while (i > 0 && color === bandera[i - 1]); // Evita colores consecutivos iguales
     bandera.push(color);
 }
 
+// Mostramos la bandera como una tabla en la web, cada celda representa una franja de color
+// Utilizamos document.write para crear la tabla y pintar cada celda con el color correspondiente
 document.write("<table style='width:100%; height:200px; border-collapse: collapse;'><tr>");
 for (let i = 0; i < bandera.length; i++) {
+    // Pintamos cada celda con el color de la franja
     document.write("<td style='background-color:" + bandera[i] + "; width:" + (100 / numFranjas) + "%;'></td>");
 }
 document.write("</tr></table>");

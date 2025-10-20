@@ -1,16 +1,14 @@
-/* Usando el array de colores del ejercicio anterior, crea un script que solicite 8 palabras
-al usuario y las almacene en otro array. Ordena ese array (el del usuario) de forma
-que, si aparecen colores del array de colores, estos queden al principio del array y el
-resto de palabras al final. Muéstralo por consola.
-Ejemplo:
-
-    Array de palabras del usuario:casa blue green orden brown bombilla bici pink
-    Array resultante:blue green brown pink casa orden bombilla bici
-
+/* Ejercicio 5 - Ordenar palabras según si son colores
+Este script pide al usuario 8 palabras y las almacena en un array.
+Luego ordena el array para que, si alguna palabra coincide con los colores definidos, esas palabras aparezcan primero.
+El resultado se muestra por consola.
+Sirve para practicar arrays, bucles, condicionales y ordenación personalizada.
 */
 
+// Array de colores de referencia
 let colores = ["rojo", "amarillo", "verde", "blanco", "azul", "marrón", "rosa", "negro"];
 
+// Array para guardar las palabras introducidas por el usuario
 let palabrasUsuario = [];
 
 for (let i = 0; i < 8; i++) {
@@ -18,6 +16,7 @@ for (let i = 0; i < 8; i++) {
     palabrasUsuario.push(palabra);
 }
 
+// Función para ordenar las palabras: primero los colores, luego el resto
 let ordenarPalabras = function(palabras, colores) {
     return palabras.sort((a, b) => {
         let aEsColor = colores.includes(a.toLowerCase());
@@ -31,6 +30,7 @@ let ordenarPalabras = function(palabras, colores) {
 
 let palabrasOrdenadas = ordenarPalabras(palabrasUsuario, colores);
 
+// Mostramos el resultado por consola
 console.log("Array resultante: " + palabrasOrdenadas.join(" "));
 
 let pedirNumero = function() {

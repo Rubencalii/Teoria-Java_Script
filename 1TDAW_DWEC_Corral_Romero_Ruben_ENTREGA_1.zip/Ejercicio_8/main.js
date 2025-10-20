@@ -1,129 +1,66 @@
-/*Un restaurante nos ha encargado una aplicación para colocar a los clientes en sus mesas.
-En una mesa se pueden sentar de 0 (mesa vacía) a 4 comensales (mesa llena).
-El funcionamiento es el siguiente:
-Cuando llega un cliente se le pregunta cuántos son. Como el programa no está preparado
-para colocar a grupos mayores a 4, si un cliente solicita una mesa con más comensales (por
-ejemplo, 6), el programa dará el mensaje “Lo siento, no admitimos grupos de 6, haga grupos
-de 4 personas como máximo e intente de nuevo” y volverá a preguntar.
-
-Para cada grupo nuevo que llega, se busca siempre la primera mesa libre (con 0 personas).
-Si no quedan mesas libres, se busca una donde haya hueco para todo el grupo (por ejemplo,
-si el grupo es de dos personas, se podrá colocar en mesas donde haya una o dos personas).
-Cada vez que se sientan nuevos clientes se debe mostrar el estado de las mesas. Los grupos
-no se pueden romper, aunque haya huecos sueltos suficientes.
-
-A tener en cuenta:
-El programa comienza pidiendo el número de mesas que tiene el restaurante.
-Inicialmente, las mesas se cargan con valores aleatorios entre 0 y 4 y mostrará por pan-
-talla como quedan las mesas inicialmente.
-El programa seguirá pidiendo comensales hasta que se introduzca un valor negativo.
-Ejemplo de ejecución:
-
-    //El usuario ha metido un valor de 10
-    Estado de las mesas: 3 2 0 2 4 1 0 2 1 1 
-    El usuario pide una mesa para 2.
-    Por favor, Siéntese en la mesa 3
-    Estado de las mesas: 3 2 2 2 4 1 0 2 1 1
-    El usuario pide una mesa para 4
-    Por favor, Siéntese en la mesa 7
-    Estado de las mesas: 3 2 2 2 4 1 4 2 1 1
-    El usuario pide una mesa para 3
-    Por favor, Siéntese en la mesa 6
-    Estado de las mesas: 3 2 2 2 4 4 4 2 1 1
-    El usuario pide una mesa para 4
-    Lo siento, no queda sitio en el restaurante.
-    Estado de las mesas: 3 2 2 2 4 1 4 2 1 1
-
+/*Ejercicio 8 - Gestión de mesas en un restaurante
+Este script simula la asignación de mesas en un restaurante. Cada mesa puede tener de 0 a 4 comensales.
+El usuario indica cuántos comensales son y el programa busca la mejor mesa disponible para el grupo.
+Si el grupo es mayor de 4, se muestra un mensaje de error y se vuelve a preguntar.
+El estado de las mesas se muestra tras cada asignación.
+Sirve para practicar arrays, generación aleatoria, bucles, condicionales y lógica de asignación.
 */
 
+// Función para pedir un número entero positivo
 let pedirNumero = function() {
     let numero;
     do{
-        numero = parseInt(prompt("Pon un numero entero mayor a 0: "))
-    } while(isNaN(numero) || numero <= 0);
-    
+        numero = parseInt(prompt("¿Cuántas personas tiene el grupo? (máximo 4): "))
+        if (isNaN(numero) || numero <= 0 || numero > 4){
+            alert("Solo se admiten grupos de 1 a 4 personas.");
+        }
+    } while(isNaN(numero) || numero <= 0 || numero > 4);
     return numero;
 };
 
-let inicializarMesas = function(numeroMesas) {
-    let mesas = [];
-    for (let i = 0; i < numeroMesas; i++) {
-        mesas[i] = Math.floor(Math.random() * 5);
+// Pedimos el número de mesas y las inicializamos con valores aleatorios entre 0 y 4
+let numMesas = parseInt(prompt("¿Cuántas mesas tiene el restaurante?"));
+let mesas = [];
+for (let i = 0; i < numMesas; i++) {
+    mesas[i] = Math.floor(Math.random() * 5);
+}
+console.log("Estado inicial de las mesas: " + mesas.join(" "));
+
+// Bucle principal para asignar mesas hasta que el usuario introduzca un valor negativo
+let comensales;
+do {
+    comensales = parseInt(prompt("¿Cuántos comensales son? (negativo para salir)"));
+    if (comensales < 0) break;
+    if (comensales > 4) {
+        alert("Lo siento, no admitimos grupos de más de 4. Haga grupos de 4 personas como máximo e intente de nuevo.");
+        continue;
     }
-    return mesas;
-};
 
-let mostrarEstadoMesas = function(mesas) {
-    console.log("Estado de las mesas: " + mesas.join(" "));
-};
-
-let buscarMesaDisponible = function(mesas, comensales) {
-
+    // Buscamos la primera mesa libre (con 0 personas)
+    let mesaAsignada = -1;
     for (let i = 0; i < mesas.length; i++) {
         if (mesas[i] === 0) {
-            return i;
-        }
-    }
-    
-    for (let i = 0; i < mesas.length; i++) {
-        if (mesas[i] + comensales <= 4) {
-            return i;
-        }
-    }
-    
-    return -1;
-};
-
-let pedirComensales = function() {
-    let comensales;
-    do {
-        comensales = parseInt(prompt("Pra cuantos son?"));
-        
-        if (isNaN(comensales)) {
-            continue;
-        }
-        
-        if (comensales < 0) {
-            return comensales; 
-        }
-        
-        if (comensales > 4) {
-            alert("No admitimos grupos de " + comensales + ", haga grupos de 4 personas como máximo");
-            continue;
-        }
-        
-        return comensales;
-        
-    } while (true);
-};
-
-let gestionarRestaurante = function() {
-
-    let numeroMesas = pedirNumero();
-    
-    let mesas = inicializarMesas(numeroMesas);
-    
-    mostrarEstadoMesas(mesas);
-    
-    while (true) {
-        let comensales = pedirComensales();
-        
-        if (comensales < 0) {
+            mesaAsignada = i;
             break;
         }
-        
-        let mesaDisponible = buscarMesaDisponible(mesas, comensales);
-        
-        if (mesaDisponible !== -1) {
-
-            mesas[mesaDisponible] += comensales;
-            console.log("Siéntese en la mesa " + (mesaDisponible + 1));
-        } else {
-            console.log("No queda sitio en el restaurante.");
-        }
-        
-        mostrarEstadoMesas(mesas);
     }
-};
+    // Si no hay mesas libres, buscamos una con hueco suficiente
+    if (mesaAsignada === -1) {
+        for (let i = 0; i < mesas.length; i++) {
+            if (mesas[i] + comensales <= 4) {
+                mesaAsignada = i;
+                break;
+            }
+        }
+    }
 
-gestionarRestaurante();
+    // Asignamos la mesa si es posible
+    if (mesaAsignada !== -1) {
+        mesas[mesaAsignada] += comensales;
+        alert("Por favor, siéntese en la mesa " + (mesaAsignada + 1));
+    } else {
+        alert("Lo siento, no queda sitio en el restaurante.");
+    }
+    // Mostramos el estado de las mesas tras cada asignación
+    console.log("Estado de las mesas: " + mesas.join(" "));
+} while (comensales >= 0);

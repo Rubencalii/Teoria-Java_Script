@@ -1,16 +1,13 @@
-/* Crea un script que pida al usuario un numero entero positivo N mayor a 0. Hay 
-que controlar que el número introducido sea correcto. Si no es así se volverá a 
-pedir. 
-A continuación debe realizar lo siguiente: 
-a.  Calcular los divisores del número N y mostrarlos. Un número y es divisor 
-de otro x si el resultado de efectuar la operación de resto es igual a 0: 
-x%y = 0 --> y es divisor de x 
-b.  Calcular la suma de los cuadrados de los divisores obtenidos en el paso 
-anterior y mostrarla. 
-c.  Indicar si esa suma es un cuadrado o no con una frase por pantalla. Se 
-dice que un número es un cuadrado si es el resultado de la multiplicación 
-de un número por sí mismo */
+/*
+Ejercicio 1 - Divisores y suma de cuadrados
+Este script pide al usuario un número entero positivo N y realiza tres tareas:
+1. Calcula y muestra los divisores de N.
+2. Calcula la suma de los cuadrados de esos divisores.
+3. Indica si esa suma es un número cuadrado perfecto.
+Sirve para practicar validación de datos, bucles, arrays y operaciones matemáticas.
+*/
 
+// Función para pedir al usuario un número entero positivo
 let pedirNumero = function() {
     let numero;
     do{
@@ -25,6 +22,7 @@ let pedirNumero = function() {
     return numero;
 };
 
+// Función que devuelve los divisores de un número
 let divisores = function(n){
     let divisores = [];
 
@@ -36,27 +34,29 @@ let divisores = function(n){
     return divisores;
 };
 
+// Función que suma los cuadrados de los divisores
 let sumarCuadrados = function(divisores){
     let suma = 0;
-    
     for (let i = 0; i < divisores.length; i++){
         suma += divisores[i] * divisores[i];
     }
     return suma;
 };
 
+// Función que comprueba si un número es cuadrado perfecto
 let esCuadrado = function(numero){
     let raiz = Math.sqrt(numero);
     return raiz === Math.floor(raiz);
 };
 
-let N = pedirNumero();
+// Programa principal
+let N = pedirNumero(); // Pedimos el número
 console.log("Numero: " + N);
 
-let misDivisores = divisores(N);
+let misDivisores = divisores(N); // Calculamos los divisores
 console.log("Divisores: " + misDivisores);
 
-let suma = sumarCuadrados(misDivisores);
+let suma = sumarCuadrados(misDivisores); // Sumamos los cuadrados
 console.log("Suma de cuadrados: " + suma);
 
 if (esCuadrado(suma)){
