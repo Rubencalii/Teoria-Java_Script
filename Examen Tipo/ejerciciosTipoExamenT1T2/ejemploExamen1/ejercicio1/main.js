@@ -41,7 +41,7 @@ const estudiantesAprobados = (estudiantes) => {
         console.log(estudiante.nombre)
     })*/
 
-    // Opcion 2: filter + map
+    // Opcion 2: filter se utiliza para crear un nuevo array con todos los elementos que pasen una prueba o condición + map
     var estudiantesAprobados = estudiantes.filter(
         est => est.nota >= 5
     ).map(est => est.nombre);
