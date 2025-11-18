@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio Lista Dinámica</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #lista {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        #agregarElemento {
+            padding: 10px 20px;
+            background-color: #4CAF50; 
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        #agregarElemento:hover {
+            background-color: #45a049;  
+        }
+        .elemento {
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+        .seleccionado {
+            background-color: #ffc107; 
+            color: black;
+        }
+        li {
+            cursor: pointer; 
+        }
+    </style>
+</head>
+<body>
+
+    <ul id="lista"></ul>
+
+    <button id="agregarElemento">Agregar Elemento</button>
+
+    <script src="main.js"></script>
+</body>
+</html>
