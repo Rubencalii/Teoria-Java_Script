@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Imágenes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Galería de Imágenes</h1>
+
+    <div class="gallery">
+        <div class="main-image-container">
+            <!-- La imagen principal que se actualizará -->
+            <img src="https://via.placeholder.com/800x400.png/ddd/333?text=Imagen+1" alt="Imagen principal" id="mainImage">
+        </div>
+
+        <!-- Contenedor para las miniaturas con un único listener -->
+        <div class="thumbnails-container" id="thumbnails">
+            <img src="./img/Gemini_Generated_Image_q0686eq0686eq068.png" alt="Miniatura 1" class="thumbnail activa">
+            <img src="./img/Gemini_Generated_Image_f1wstgf1wstgf1ws.png" alt="Miniatura 2" class="thumbnail">
+            <img src="./img/Gemini_Generated_Image_pn275rpn275rpn27.png" alt="Miniatura 3" class="thumbnail">
+            <img src="./img/Gemini_Generated_Image_ftkqg9ftkqg9ftkq.png" alt="Miniatura 4" class="thumbnail">
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
