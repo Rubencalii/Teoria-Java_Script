@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Busca Minas - Practica Final</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<header class="site-header">
+			<div class="header-inner">
+				<img src="img/Logo.png" alt="Logo Busca Minas" class="logo" />
+				<h1>Busca Minas</h1>
+			</div>
+		</header>
+
+		<main>
+			<section class="controls">
+				<button id="newGame">Nueva partida</button>
+				<label for="difficulty">Dificultad:</label>
+				<select id="difficulty">
+					<option value="easy">Fácil</option>
+					<option value="medium">Medio</option>
+					<option value="hard">Difícil</option>
+				</select>
+				<div id="info">
+					<span id="flags">Banderas: 0</span>
+					<span id="time">Tiempo: 0s</span>
+				</div>
+			</section>
+
+			<section id="game" aria-label="Tablero de Busca Minas">
+				<!-- Aquí se inyectará el tablero por JavaScript -->
+				<div id="board" class="board" role="grid"></div>
+			</section>
+
+			<aside class="legend">
+				<h2>Leyenda</h2>
+				<ul>
+					<li><img src="img/Bomba.png" alt="Bomba" /></li>
+					<li><img src="img/Uno.png" alt="1" /> </li>
+					<li><img src="img/Dos.png" alt="2" /> </li>
+					<li><img src="img/Tres.png" alt="3" /></li>
+					<li><img src="img/Cuatro.png" alt="4" /></li>
+					<li><img src="img/España .png" alt="Bandera España" /></li>
+				</ul>
+			</aside>
+		</main>
+
+		<footer>
+			<p>Práctica final - Busca Minas. Hecho con JavaScript y las imágenes en <code>img/</code>.</p>
+		</footer>
+
+		<script src="main.js" defer></script>
+	</body>
+</html>
+
