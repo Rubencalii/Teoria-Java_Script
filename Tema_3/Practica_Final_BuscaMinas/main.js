@@ -1,134 +1,128 @@
-// Tamaño del tablero por un prompt al iniciar el juego
-let filas = parseInt(prompt("Ingrese el número de filas del tablero:", "10"));
-let columnas = parseInt(prompt("Ingrese el número de columnas del tablero:", "10"));
-let minas = parseInt(prompt("Ingrese el número de minas en el tablero:", "10"));
+let filas = parseInt(prompt("Cuantas filas?", "10"));
+let columnas = parseInt(prompt("Cuantas columnas?", "10"));
+let minas = parseInt(prompt("Cuantas minas?", "10"));
 
-// Validar entradas
 if (isNaN(filas) || isNaN(columnas) || isNaN(minas) || filas <= 0 || columnas <= 0 || minas <= 0 || minas >= filas * columnas) {
-    alert("Entradas mal hechas, usando tamaño predeterminados que es  10x10 con 10 minas.");
     filas = 10;
     columnas = 10;
     minas = 10;
 }
 
-// Variables globales
 let tablero = [];
-let juegoTerminado = false;
-let celdasReveladas = 0;
+let terminado = false;
+let reveladas = 0;
 
-// Inicializar el juego
-function iniciarJuego() {
+function iniciar() {
     crearTablero();
-    colocarMinas();
+    ponerMinas();
     calcularNumeros();
-    renderizarTablero();
+    dibujar();
 }
 
-// Crear el tablero vacío
 function crearTablero() {
     tablero = [];
     for (let i = 0; i < filas; i++) {
         let fila = [];
         for (let j = 0; j < columnas; j++) {
-            fila.push({ mina: false, numero: 0, revelado: false, marcado: false });
+            fila.push({ mina: false, num: 0, visto: false, bandera: false });
         }
         tablero.push(fila);
     }
 }
 
-// Colocar minas aleatoriamente
-function colocarMinas() {
-    let minasColocadas = 0;
-    while (minasColocadas < minas) {
-        let fila = Math.floor(Math.random() * filas);
-        let columna = Math.floor(Math.random() * columnas);
-        if (!tablero[fila][columna].mina) {
-            tablero[fila][columna].mina = true;
-            minasColocadas++;
+function ponerMinas() {
+    let puestas = 0;
+    while (puestas < minas) {
+        let f = Math.floor(Math.random() * filas);
+        let c = Math.floor(Math.random() * columnas);
+        if (!tablero[f][c].mina) {
+            tablero[f][c].mina = true;
+            puestas++;
         }
     }
 }
 
-// Calcular números en el tablero
 function calcularNumeros() {
     for (let i = 0; i < filas; i++) {
         for (let j = 0; j < columnas; j++) {
             if (!tablero[i][j].mina) {
-                let contador = 0;
+                let cont = 0;
                 for (let x = -1; x <= 1; x++) {
                     for (let y = -1; y <= 1; y++) {
                         let ni = i + x;
                         let nj = j + y;
                         if (ni >= 0 && ni < filas && nj >= 0 && nj < columnas && tablero[ni][nj].mina) {
-                            contador++;
+                            cont++;
                         }
                     }
                 }
-                tablero[i][j].numero = contador;
+                tablero[i][j].num = cont;
             }
         }
     }
 }
 
-// Renderizar el tablero en el DOM
-function renderizarTablero() {
-    const contenedor = document.getElementById('tablero');
+function dibujar() {
+    let contenedor = document.getElementById('tablero');
     contenedor.innerHTML = '';
+    contenedor.style.gridTemplateColumns = `repeat(${columnas}, var(--cell-size))`;
     for (let i = 0; i < filas; i++) {
         for (let j = 0; j < columnas; j++) {
-            const celda = document.createElement('div');
-            celda.classList.add('celda');
-            celda.dataset.fila = i;
-            celda.dataset.columna = j;
-            celda.addEventListener('click', manejarClick);
-            celda.addEventListener('contextmenu', manejarClickDerecho);
-            contenedor.appendChild(celda);
+            let div = document.createElement('div');
+            div.classList.add('celda');
+            div.dataset.fila = i;
+            div.dataset.columna = j;
+            div.onclick = clickIzq;
+            div.oncontextmenu = clickDer;
+            contenedor.appendChild(div);
         }
     }
 }
 
-// Manejar el click izquierdo para revelar celda 
-function manejarClickIzquierdo(event){
-    if (juegoTerminado) return;
-    const fila = parseInt(event.target.dataset.fila);
-    const columna = parseInt(event.target.dataset.columna);
-    revelarCelda(fila, columna);
-    verificarVictoria();
+function clickIzq(e) {
+    if (terminado) return;
+    let f = parseInt(e.target.dataset.fila);
+    let c = parseInt(e.target.dataset.columna);
+    revelar(f, c);
+    comprobar();
 }
 
-// Manejar el click derecho para poner bandera
-function manejarClickDerecho(event){
-    event.preventDefault();
-    if (juegoTerminado) return;
-    const fila = parseInt(event.target.dataset.fila);
-    const columna = parseInt(event.target.dataset.columna);
-    marcarCelda(fila, columna);
+function clickDer(e) {
+    e.preventDefault();
+    if (terminado) return;
+    let f = parseInt(e.target.dataset.fila);
+    let c = parseInt(e.target.dataset.columna);
+    marcar(f, c);
 }
 
-// Revelar celda
-function revelarCelda(fila, columna) {
-    const celda = tablero[fila][columna];
-    if (celda.revelado || celda.marked) return;
+function revelar(f, c) {
+    let celda = tablero[f][c];
+    if (celda.visto || celda.bandera) return;
 
-    celda.revelado = true;
-    celdasReveladas++;
-    const elementoCelda = document.querySelector(`.celda[data-fila='${fila}'][data-columna='${columna}']`);
-    elementoCelda.classList.add('revelado');
+    celda.visto = true;
+    reveladas++;
+    let elem = document.querySelector(`.celda[data-fila='${f}'][data-columna='${c}']`);
+    elem.classList.add('revelado');
 
     if (celda.mina) {
-        elementoCelda.classList.add('mina');
-        finalizarJuego(false);
+        elem.classList.add('mina');
+        let img = document.createElement('img');
+        img.src = 'img/Bomba.png';
+        elem.appendChild(img);
+        terminar(false);
     } else {
-        if (celda.numero > 0) {
-            elementoCelda.textContent = celda.numero;
+        if (celda.num > 0) {
+            let imgs = ['', 'img/Uno.png', 'img/Dos.png', 'img/Tres.png', 'img/Cuatro.png', 'img/cinco.png', 'img/seis.png', 'img/siete.png', 'img/ocho.png'];
+            let img = document.createElement('img');
+            img.src = imgs[celda.num];
+            elem.appendChild(img);
         } else {
-            // Revelar celdas adyacentes si el número es 0
             for (let x = -1; x <= 1; x++) {
                 for (let y = -1; y <= 1; y++) {
-                    let ni = fila + x;
-                    let nj = columna + y;
+                    let ni = f + x;
+                    let nj = c + y;
                     if (ni >= 0 && ni < filas && nj >= 0 && nj < columnas) {
-                        revelarCelda(ni, nj);
+                        revelar(ni, nj);
                     }
                 }
             }
@@ -136,44 +130,49 @@ function revelarCelda(fila, columna) {
     }
 }
 
-// Marcar o desmarcar celda con bandera
-function marcarCelda(fila, columna) {
-    const celda = tablero[fila][columna];
-    if (celda.revelado) return;
+function marcar(f, c) {
+    let celda = tablero[f][c];
+    if (celda.visto) return;
 
-    celda.marked = !celda.marked;
-    const elementoCelda = document.querySelector(`.celda[data-fila='${fila}'][data-columna='${columna}']`);
-    if (celda.marked) {
-        elementoCelda.classList.add('marcado');
-        elementoCelda.textContent = '🚩';
+    celda.bandera = !celda.bandera;
+    let elem = document.querySelector(`.celda[data-fila='${f}'][data-columna='${c}']`);
+    if (celda.bandera) {
+        elem.classList.add('marcado');
+        let img = document.createElement('img');
+        img.src = 'img/España.png';
+        elem.appendChild(img);
     } else {
-        elementoCelda.classList.remove('marcado');
-        elementoCelda.textContent = '';
+        elem.classList.remove('marcado');
+        elem.innerHTML = '';
     }
 }
 
-// Verificar si el jugador ha ganado
-function verificarVictoria() {
-    if (celdasReveladas === filas * columnas - minas) {
-        finalizarJuego(true);
+function comprobar() {
+    if (reveladas === filas * columnas - minas) {
+        terminar(true);
     }
 }
 
-// Finalizar el juego
-function finalizarJuego(ganado) {
-    juegoTerminado = true;
-    const mensaje = ganado ? "¡Felicidades! Has ganado!" : "¡Has perdido! Juego terminado.";
-    alert(mensaje);
-    // Revelar todas las minas
+function terminar(gano) {
+    terminado = true;
+    if (gano) {
+        alert("Ganaste");
+    } else {
+        alert("Perdiste");
+    }
     for (let i = 0; i < filas; i++) {
         for (let j = 0; j < columnas; j++) {
             if (tablero[i][j].mina) {
-                const elementoCelda = document.querySelector(`.celda[data-fila='${i}'][data-columna='${j}']`);
-                elementoCelda.classList.add('mina');
+                let elem = document.querySelector(`.celda[data-fila='${i}'][data-columna='${j}']`);
+                elem.classList.add('mina');
+                if (!elem.querySelector('img')) {
+                    let img = document.createElement('img');
+                    img.src = 'img/Bomba.png';
+                    elem.appendChild(img);
+                }
             }
         }
     }
 }
 
-// Iniciar el juego al cargar la página
-window.onload = iniciarJuego;
+window.onload = iniciar;
