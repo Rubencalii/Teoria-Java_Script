@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tablero Kanban - Practica Tema 4</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div class="contenedor">
+            <h1>Tablero Kanban - Practica Tema 4</h1>
+            
+            <div id="accionesCabecera" class="acciones-cabecera oculto">
+                <button onclick="resetBoard()" class="btn-reiniciar">Reiniciar Tablero</button>
+            </div>
+
+            <div id="formularioConfig" class="formulario-config">
+                <form id="formularioConfigTablero">
+                    <div class="grupo-formulario">
+                        <label for="numColumnas">Numero de columnas:</label>
+                        <input type="number" id="numColumnas" min="1" max="10" value="3" required>
+                    </div>
+                    
+                    <div id="configColumnas"></div>
+                    
+                    <button type="submit">Crear Tablero</button>
+                </form>
+            </div>
+
+            <div id="tableroKanban" class="tablero-kanban oculto"></div>
+        </div>
+    </body>
+</html>
