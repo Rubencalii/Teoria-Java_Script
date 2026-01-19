@@ -1,0 +1,221 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.contenedor {
+    max-width: 1400px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 2.5em;
+}
+
+.formulario-config {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.grupo-formulario {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 600;
+}
+
+input[type="number"],
+input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.config-columna {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border-left: 4px solid #667eea;
+}
+
+.config-columna h3 {
+    color: #667eea;
+    margin-bottom: 15px;
+}
+
+.campos-columna {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 15px;
+}
+
+button {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-reiniciar {
+    background: #dc3545;
+    margin-left: 10px;
+}
+
+.btn-reiniciar:hover {
+    background: #c82333;
+}
+
+.tablero-kanban {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 20px 0;
+}
+
+.columna-kanban {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    min-width: 300px;
+    flex: 1;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.cabecera-columna {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #667eea;
+}
+
+.titulo-columna {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: #333;
+}
+
+.contador-columna {
+    background: #667eea;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.9em;
+}
+
+.formulario-agregar-tarea {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.formulario-agregar-tarea input {
+    flex: 1;
+}
+
+.formulario-agregar-tarea button {
+    padding: 10px 20px;
+    white-space: nowrap;
+}
+
+.contenedor-tareas {
+    min-height: 100px;
+}
+
+.tarea {
+    background: white;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    cursor: move;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.3s;
+    border-left: 4px solid #667eea;
+    position: relative;
+}
+
+.contenido-tarea {
+    color: #333;
+    margin-bottom: 8px;
+    word-wrap: break-word;
+}
+
+.eliminar-tarea {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.columna-kanban.sobre-arrastre {
+    background: #e7e9fc;
+    border: 2px dashed #667eea;
+}
+
+.mensaje-error {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.acciones-cabecera {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.oculto {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .tablero-kanban {
+        flex-direction: column;
+    }
+    .columna-kanban {
+        min-width: 100%;
+    }
+}
