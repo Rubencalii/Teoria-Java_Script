@@ -31,3 +31,32 @@ function inicializar () {
     // iNIciales
     generarCamposColumnas();
 }
+
+// almacenamiento
+function cargarDesdeAlmacenamiento() {
+    const datosGuardados = localStorage.getItem('miKanban');
+    if (datosGuardados) {
+        datosTablero = JSON.parse(datosGuardados);
+    }
+}
+
+function guardarEnAlmacenamiento() {
+    localStorage.setItem('miKanban', JSON.stringify(datosTablero));
+}
+
+// logica del formulario dinamico
+
+function generarCamposColumnas() {
+    const num = inputNumColumnas.value;
+    configColumnas.innerHTML = '';
+
+    for (let i = 1; i <= num; i++) {
+        configColumnas.innerHTML += `
+            <div style="margin-bottom: 10px;">
+                <h4>Columna ${i}</h4>
+                <input type="text" id="nombreCol${i}" placeholder="Nombre" required>
+                <input type="number" id="limiteCol${i}" placeholder="Límite" required style="width: 60px;">
+            </div>
+        `;
+    }
+}
