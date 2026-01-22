@@ -83,3 +83,52 @@ function manejarEnvioFormulario(e) {
     guardarEnAlmacenamiento();
     mostrarTablero();
 }
+
+// MOnstar tablero 
+
+function mostrarTablero() {
+    formularioConfig.style.display = 'none'; 
+    tableroKanban.innerHTML = ''; 
+    accionesCabecera.innerHTML = '<button onclick="reiniciarTablero()">Reiniciar</button>';
+
+    datosTablero.columnas.forEach((columna, idxCol) => {
+        const columnaDiv = document.createElement('div');
+        columnaDiv.className = 'columna';
+        columnaDiv.innerHTML = `
+            <h3>${columna.nombre} (${columna.tareas.length}/${columna.limite})</h3>
+            <div class="zona-drop" id="zona-${idxCol}" style="min-height: 50px; border: 1px dashed #ccc;"></div>
+            <input type="text" id="input-${idxCol}" placeholder="Tarea...">
+            <button onclick="añadirTarea(${idxCol})">+</button>
+        `;
+
+        const zonaDrop = columnaDiv.querySelector('.zona-drop');
+
+        // Dibujamos las tareas
+        columna.tareas.forEach((tareaTexto, idxTarea) => {
+            const divTarea = document.createElement('div');
+            divTarea.className = 'tarea';
+            divTarea.textContent = tareaTexto;
+            divTarea.draggable = true;
+
+            // Evento para empezar a arrastrar
+            divTarea.ondragstart = (e) => {
+                e.dataTransfer.setData('tarea', idxTarea);
+                e.dataTransfer.setData('colOrigen', idxCol);
+            };
+
+            // Borrar con doble clic 
+            divTarea.ondblclick = () => {
+                datosTablero.columnas[idxCol].tareas.splice(idxTarea, 1);
+                actualizarTodo();
+            };
+
+            zonaDrop.appendChild(divTarea);
+        });
+
+        // Configuración de soltar 
+        zonaDrop.ondragover = (e) => e.preventDefault();
+        zonaDrop.ondrop = (e) => manejarDrop(e, idxCol);
+
+        tableroKanban.appendChild(columnaDiv);
+    });
+}
