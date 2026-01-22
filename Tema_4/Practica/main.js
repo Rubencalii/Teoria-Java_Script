@@ -60,3 +60,26 @@ function generarCamposColumnas() {
         `;
     }
 }
+
+// Envios formulario
+
+function manejarEnvioFormulario(e) {
+    e.preventDefault();
+
+    const numColumnas = inputNumColumnas.value;
+    datosTablero.columnas = [];
+
+    for (let i = 1; i <= numColumnas; i++) {
+        const nombreCol = document.getElementById(`nombreCol${i}`).value;
+        const limiteCol = parseInt(document.getElementById(`limiteCol${i}`).value, 10);
+
+        datosTablero.columnas.push({
+            nombre: nombreCol,
+            limite: limiteCol,
+            tareas: []
+        });
+    }
+
+    guardarEnAlmacenamiento();
+    mostrarTablero();
+}
