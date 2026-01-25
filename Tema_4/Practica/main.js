@@ -132,3 +132,54 @@ function mostrarTablero() {
         tableroKanban.appendChild(columnaDiv);
     });
 }
+
+// Añadir tarea a una columna
+function añadirTarea(idxCol) {
+    const input = document.getElementById(`input-${idxCol}`);
+    const texto = input.value.trim();
+    if (!texto) return;
+    if (datosTablero.columnas[idxCol].tareas.length >= datosTablero.columnas[idxCol].limite) {
+        alert('Límite de tareas alcanzado');
+        return;
+    }
+    datosTablero.columnas[idxCol].tareas.push(texto);
+    input.value = '';
+    actualizarTodo();
+}
+
+// Mover tarea entre columnas (drag & drop)
+function manejarDrop(e, idxColDestino) {
+    e.preventDefault();
+    const idxTarea = e.dataTransfer.getData('tarea');
+    const idxColOrigen = e.dataTransfer.getData('colOrigen');
+    if (idxColDestino == idxColOrigen) return;
+    if (datosTablero.columnas[idxColDestino].tareas.length >= datosTablero.columnas[idxColDestino].limite) {
+        alert('Límite de tareas alcanzado');
+        return;
+    }
+    const tarea = datosTablero.columnas[idxColOrigen].tareas.splice(idxTarea, 1)[0];
+    datosTablero.columnas[idxColDestino].tareas.push(tarea);
+    actualizarTodo();
+}
+
+// Actualizar tablero y guardar
+function actualizarTodo() {
+    guardarEnAlmacenamiento();
+    mostrarTablero();
+}
+
+// Mostrar formulario de configuración
+function mostrarFormularioConfiguracion() {
+    formularioConfig.style.display = '';
+    tableroKanban.innerHTML = '';
+    accionesCabecera.innerHTML = '';
+}
+
+// Reiniciar tablero
+function reiniciarTablero() {
+    if (confirm('¿Seguro que quieres reiniciar el tablero?')) {
+        localStorage.removeItem('miKanban');
+        datosTablero = { columnas: [] };
+        mostrarFormularioConfiguracion();
+    }
+}
